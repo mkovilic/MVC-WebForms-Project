@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="praModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Meals">
+          <Key>
+            <PropertyRef Name="ID_Meals" />
+          </Key>
+          <Property Name="ID_Meals" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mealss" Type="nvarchar" MaxLength="50" />
+          <Property Name="Masti" Type="float" />
+          <Property Name="Bjelancevine" Type="float" />
+          <Property Name="Ugljikohidrati" Type="float" />
+          <Property Name="Suma" Type="float" />
+          <Property Name="VridiDo" Type="nvarchar" MaxLength="50" />
+          <Property Name="VridiOd" Type="nvarchar" MaxLength="50" />
+          <Property Name="n" Type="float" />
+        </EntityType>
+        <EntityType Name="Namirnice">
+          <Key>
+            <PropertyRef Name="ID_namirnice" />
+          </Key>
+          <Property Name="Namirnica" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Kjuli" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kcal" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_namirnice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipNamirnice_ID" Type="int" />
+          <Property Name="mjerna_id" Type="int" />
+          <Property Name="MjernaJedinica" Type="varchar" MaxLength="50" />
+          <Property Name="ObrokID" Type="int" />
+          <Property Name="DatumJelovnika" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TipNamirnice">
+          <Key>
+            <PropertyRef Name="ID_tipnamirnice" />
+          </Key>
+          <Property Name="TipNamirnice" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_tipnamirnice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Namirnice__Obrok__68D28DBC">
+          <End Role="Meals" Type="Self.Meals" Multiplicity="0..1" />
+          <End Role="Namirnice" Type="Self.Namirnice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="ID_Meals" />
+            </Principal>
+            <Dependent Role="Namirnice">
+              <PropertyRef Name="ObrokID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Namirnice__TipNa__67DE6983">
+          <End Role="TipNamirnice" Type="Self.TipNamirnice" Multiplicity="0..1" />
+          <End Role="Namirnice" Type="Self.Namirnice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipNamirnice">
+              <PropertyRef Name="ID_tipnamirnice" />
+            </Principal>
+            <Dependent Role="Namirnice">
+              <PropertyRef Name="TipNamirnice_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Namirnice_Meals">
+          <End Role="Meals" Type="Self.Meals" Multiplicity="0..1" />
+          <End Role="Namirnice" Type="Self.Namirnice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="ID_Meals" />
+            </Principal>
+            <Dependent Role="Namirnice">
+              <PropertyRef Name="ObrokID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Namirnice_TipNamirnice">
+          <End Role="TipNamirnice" Type="Self.TipNamirnice" Multiplicity="0..1" />
+          <End Role="Namirnice" Type="Self.Namirnice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipNamirnice">
+              <PropertyRef Name="ID_tipnamirnice" />
+            </Principal>
+            <Dependent Role="Namirnice">
+              <PropertyRef Name="TipNamirnice_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="povijest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="datum" Type="datetime" Mode="In" />
+          <Parameter Name="end" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="praModelStoreContainer">
+          <EntitySet Name="Meals" EntityType="Self.Meals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Namirnice" EntityType="Self.Namirnice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipNamirnice" EntityType="Self.TipNamirnice" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Namirnice__Obrok__68D28DBC" Association="Self.FK__Namirnice__Obrok__68D28DBC">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="Namirnice" EntitySet="Namirnice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Namirnice__TipNa__67DE6983" Association="Self.FK__Namirnice__TipNa__67DE6983">
+            <End Role="TipNamirnice" EntitySet="TipNamirnice" />
+            <End Role="Namirnice" EntitySet="Namirnice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Namirnice_Meals" Association="Self.FK_Namirnice_Meals">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="Namirnice" EntitySet="Namirnice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Namirnice_TipNamirnice" Association="Self.FK_Namirnice_TipNamirnice">
+            <End Role="TipNamirnice" EntitySet="TipNamirnice" />
+            <End Role="Namirnice" EntitySet="Namirnice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="praModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Meals">
+          <Key>
+            <PropertyRef Name="ID_Meals" />
+          </Key>
+          <Property Name="ID_Meals" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mealss" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Masti" Type="Double" />
+          <Property Name="Bjelancevine" Type="Double" />
+          <Property Name="Ugljikohidrati" Type="Double" />
+          <Property Name="Suma" Type="Double" />
+          <Property Name="VridiDo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VridiOd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="n" Type="Double" />
+          <NavigationProperty Name="Namirnice" Relationship="Self.FK__Namirnice__Obrok__68D28DBC" FromRole="Meals" ToRole="Namirnice" />
+          <NavigationProperty Name="Namirnice1" Relationship="Self.FK_Namirnice_Meals" FromRole="Meals" ToRole="Namirnice" />
+        </EntityType>
+        <EntityType Name="Namirnice">
+          <Key>
+            <PropertyRef Name="ID_namirnice" />
+          </Key>
+          <Property Name="Namirnica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kjuli" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kcal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_namirnice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipNamirnice_ID" Type="Int32" />
+          <Property Name="mjerna_id" Type="Int32" />
+          <Property Name="MjernaJedinica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ObrokID" Type="Int32" />
+          <Property Name="DatumJelovnika" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Meals" Relationship="Self.FK__Namirnice__Obrok__68D28DBC" FromRole="Namirnice" ToRole="Meals" />
+          <NavigationProperty Name="Meals1" Relationship="Self.FK_Namirnice_Meals" FromRole="Namirnice" ToRole="Meals" />
+          <NavigationProperty Name="TipNamirnice" Relationship="Self.FK__Namirnice__TipNa__67DE6983" FromRole="Namirnice" ToRole="TipNamirnice" />
+          <NavigationProperty Name="TipNamirnice1" Relationship="Self.FK_Namirnice_TipNamirnice" FromRole="Namirnice" ToRole="TipNamirnice" />
+        </EntityType>
+        <EntityType Name="TipNamirnice">
+          <Key>
+            <PropertyRef Name="ID_tipnamirnice" />
+          </Key>
+          <Property Name="TipNamirnice1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_tipnamirnice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Namirnice" Relationship="Self.FK__Namirnice__TipNa__67DE6983" FromRole="TipNamirnice" ToRole="Namirnice" />
+          <NavigationProperty Name="Namirnice1" Relationship="Self.FK_Namirnice_TipNamirnice" FromRole="TipNamirnice" ToRole="Namirnice" />
+        </EntityType>
+        <Association Name="FK__Namirnice__Obrok__68D28DBC">
+          <End Role="Meals" Type="Self.Meals" Multiplicity="0..1" />
+          <End Role="Namirnice" Type="Self.Namirnice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="ID_Meals" />
+            </Principal>
+            <Dependent Role="Namirnice">
+              <PropertyRef Name="ObrokID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Namirnice_Meals">
+          <End Role="Meals" Type="Self.Meals" Multiplicity="0..1" />
+          <End Role="Namirnice" Type="Self.Namirnice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meals">
+              <PropertyRef Name="ID_Meals" />
+            </Principal>
+            <Dependent Role="Namirnice">
+              <PropertyRef Name="ObrokID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Namirnice__TipNa__67DE6983">
+          <End Role="TipNamirnice" Type="Self.TipNamirnice" Multiplicity="0..1" />
+          <End Role="Namirnice" Type="Self.Namirnice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipNamirnice">
+              <PropertyRef Name="ID_tipnamirnice" />
+            </Principal>
+            <Dependent Role="Namirnice">
+              <PropertyRef Name="TipNamirnice_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Namirnice_TipNamirnice">
+          <End Role="TipNamirnice" Type="Self.TipNamirnice" Multiplicity="0..1" />
+          <End Role="Namirnice" Type="Self.Namirnice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipNamirnice">
+              <PropertyRef Name="ID_tipnamirnice" />
+            </Principal>
+            <Dependent Role="Namirnice">
+              <PropertyRef Name="TipNamirnice_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="praEntities10" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Meals" EntityType="Self.Meals" />
+          <EntitySet Name="Namirnice" EntityType="Self.Namirnice" />
+          <EntitySet Name="TipNamirnice" EntityType="Self.TipNamirnice" />
+          <AssociationSet Name="FK__Namirnice__Obrok__68D28DBC" Association="Self.FK__Namirnice__Obrok__68D28DBC">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="Namirnice" EntitySet="Namirnice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Namirnice_Meals" Association="Self.FK_Namirnice_Meals">
+            <End Role="Meals" EntitySet="Meals" />
+            <End Role="Namirnice" EntitySet="Namirnice" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Namirnice__TipNa__67DE6983" Association="Self.FK__Namirnice__TipNa__67DE6983">
+            <End Role="TipNamirnice" EntitySet="TipNamirnice" />
+            <End Role="Namirnice" EntitySet="Namirnice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Namirnice_TipNamirnice" Association="Self.FK_Namirnice_TipNamirnice">
+            <End Role="TipNamirnice" EntitySet="TipNamirnice" />
+            <End Role="Namirnice" EntitySet="Namirnice" />
+          </AssociationSet>
+          <FunctionImport Name="povijest" ReturnType="Collection(praModel.povijest_Result)">
+            <Parameter Name="datum" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Povists" EntitySet="Namirnice" ReturnType="Collection(praModel.Namirnice)">
+            <Parameter Name="datum" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="povijest_Result">
+          <Property Type="String" Name="Namirnica" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Kjuli" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Kcal" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_namirnice" Nullable="false" />
+          <Property Type="Int32" Name="TipNamirnice_ID" Nullable="true" />
+          <Property Type="Int32" Name="mjerna_id" Nullable="true" />
+          <Property Type="String" Name="MjernaJedinica" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ObrokID" Nullable="true" />
+          <Property Type="DateTime" Name="DatumJelovnika" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="praModelStoreContainer" CdmEntityContainer="praEntities10">
+          <EntitySetMapping Name="Meals">
+            <EntityTypeMapping TypeName="praModel.Meals">
+              <MappingFragment StoreEntitySet="Meals">
+                <ScalarProperty Name="ID_Meals" ColumnName="ID_Meals" />
+                <ScalarProperty Name="Mealss" ColumnName="Mealss" />
+                <ScalarProperty Name="Masti" ColumnName="Masti" />
+                <ScalarProperty Name="Bjelancevine" ColumnName="Bjelancevine" />
+                <ScalarProperty Name="Ugljikohidrati" ColumnName="Ugljikohidrati" />
+                <ScalarProperty Name="Suma" ColumnName="Suma" />
+                <ScalarProperty Name="VridiDo" ColumnName="VridiDo" />
+                <ScalarProperty Name="VridiOd" ColumnName="VridiOd" />
+                <ScalarProperty Name="n" ColumnName="n" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Namirnice">
+            <EntityTypeMapping TypeName="praModel.Namirnice">
+              <MappingFragment StoreEntitySet="Namirnice">
+                <ScalarProperty Name="Namirnica" ColumnName="Namirnica" />
+                <ScalarProperty Name="Kjuli" ColumnName="Kjuli" />
+                <ScalarProperty Name="Kcal" ColumnName="Kcal" />
+                <ScalarProperty Name="ID_namirnice" ColumnName="ID_namirnice" />
+                <ScalarProperty Name="TipNamirnice_ID" ColumnName="TipNamirnice_ID" />
+                <ScalarProperty Name="mjerna_id" ColumnName="mjerna_id" />
+                <ScalarProperty Name="MjernaJedinica" ColumnName="MjernaJedinica" />
+                <ScalarProperty Name="ObrokID" ColumnName="ObrokID" />
+                <ScalarProperty Name="DatumJelovnika" ColumnName="DatumJelovnika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipNamirnice">
+            <EntityTypeMapping TypeName="praModel.TipNamirnice">
+              <MappingFragment StoreEntitySet="TipNamirnice">
+                <ScalarProperty Name="TipNamirnice1" ColumnName="TipNamirnice" />
+                <ScalarProperty Name="ID_tipnamirnice" ColumnName="ID_tipnamirnice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="povijest" FunctionName="praModel.Store.povijest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="praModel.povijest_Result">
+                <ScalarProperty Name="Namirnica" ColumnName="Namirnica" />
+                <ScalarProperty Name="Kjuli" ColumnName="Kjuli" />
+                <ScalarProperty Name="Kcal" ColumnName="Kcal" />
+                <ScalarProperty Name="ID_namirnice" ColumnName="ID_namirnice" />
+                <ScalarProperty Name="TipNamirnice_ID" ColumnName="TipNamirnice_ID" />
+                <ScalarProperty Name="mjerna_id" ColumnName="mjerna_id" />
+                <ScalarProperty Name="MjernaJedinica" ColumnName="MjernaJedinica" />
+                <ScalarProperty Name="ObrokID" ColumnName="ObrokID" />
+                <ScalarProperty Name="DatumJelovnika" ColumnName="DatumJelovnika" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Povists" FunctionName="praModel.Store.povijest" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

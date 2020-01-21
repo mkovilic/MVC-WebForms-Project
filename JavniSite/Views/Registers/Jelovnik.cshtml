@@ -1,0 +1,53 @@
+﻿@model JavniSite.Models.Povist
+
+@{
+    ViewBag.Title = "Jelovnik";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Jelovnik</title>
+</head>
+<body>
+    <center>
+        <h1>sss</h1>
+        @if(Model != null)
+        {
+            if(Model.userinfo.Count>0)
+            {
+                <table>
+                    <tr>
+                        <th>Meals</th>
+                        <th>Namirnica</th>
+                        <th>Tip Namirnice</th>
+                        <th>Mjerna Jedincia</th>
+                        <th>DATUM</th>
+               
+                    </tr>
+                    @foreach(var item in Model.userinfo)
+                    {
+                    <tr>
+                        <td>@Html.DisplayFor(m => item.Meals)</td>
+                        <td>@Html.DisplayFor(m => item.Namirnica)</td>
+                        <td>@Html.DisplayFor(m => item.TipNamirnice)</td>
+                        <td>@Html.DisplayFor(m => item.MjernaJedinica)</td>
+                        <td>@Html.DisplayFor(m => item.Datum)</td>
+                    </tr>
+                    }
+                </table>
+
+            }
+        }
+
+    </center>
+
+
+</body>
+
+</html>
+
+
+
+

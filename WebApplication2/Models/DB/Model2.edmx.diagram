@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="46ec280eb99942afbe50f592ee13acb3" Name="Diagram1">
+        <EntityTypeShape EntityType="praModel1.Meal" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="praModel1.Namirnice" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="praModel1.TipNamirnice" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="praModel1.FK__Namirnice__Obrok__68D28DBC" ManuallyRouted="false" />
+        <AssociationConnector Association="praModel1.FK_Namirnice_Meals" ManuallyRouted="false" />
+        <AssociationConnector Association="praModel1.FK__Namirnice__TipNa__67DE6983" ManuallyRouted="false" />
+        <AssociationConnector Association="praModel1.FK_Namirnice_TipNamirnice" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
